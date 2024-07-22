@@ -8,7 +8,8 @@ get_header(); // подключаем header.php ?>
 
 <section>
 	<div class="container">
-	
+		<!-- используем файл loop для показания записей/фильмов в цикле -->
+		<?php get_template_part('loop') ?>
 	</div>
 </section>
 
