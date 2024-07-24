@@ -6,11 +6,15 @@
  */
 get_header(); // подключаем header.php ?> 
 
-<section>
-	<div class="container">
-		<!-- используем файл loop для показания записей/фильмов в цикле -->
-		<?php get_template_part('loop') ?>
-	</div>
-</section>
+<!-- главный контейнер -->
+<div class="container">
+    <!-- Нзвание страницы -->
+    <h3>Movies </h3>
+    <!-- контейнер для фильмов -->
+    <div id="movies-container" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-3 g-3">
+        <?php get_template_part('loop') ?>
+    </div>
+
+</div>
 
 <?php get_footer(); // подключаем footer.php ?>
