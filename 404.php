@@ -10,7 +10,7 @@ get_header(); // Подключаем header.php ?>
     <div class="container">
         <div class="row">
             <h1>Ой, это 404!</h1>
-            <p>Страницы не найдено</p>
+            <p>Страницы не найдено!</p>
         </div>
     </div>
 </section>
