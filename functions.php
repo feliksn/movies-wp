@@ -22,6 +22,6 @@
 
         wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/lib/bootstrap/bootstrap.min.js' , array('jquery'), ' ', true);
 
-    }
+    } 
 
 ?>
