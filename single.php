@@ -8,6 +8,8 @@ get_header(); // подключаем header.php ?>
 
 <section>
 	<div class="container">
+		<?php the_title(); ?>
+		<?php the_content(); ?>
 	</div>
 </section>
 
