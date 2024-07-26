@@ -16,4 +16,4 @@
 	<![endif]-->
 	<?php wp_head(); // необходимо для работы плагинов и функционала ?>
 </head>
-<body <?php body_class(); // все классы для body ?>>
+<body <?php body_class('bg-light'); // все классы для body ?>>
