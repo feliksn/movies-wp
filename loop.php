@@ -23,11 +23,12 @@
                         <h5 class="card-title mb-3">
                             <!-- Назавание фильма -->
                             <span><?php the_title(); ?></span>
-                               <!--Вывод года фильма, в админке это есть метки -->
-                            <small class="text-body-tertiary"><?php the_tags('(', ' ', ')'); ?></small>
+                               <!--Год фильма -->
+                            <small class="text-body-tertiary">(<?php echo get_post_meta($post->ID, 'year', true); ?>)</small>
                         </h5>
-                        <!--описание фильма и актеры в админке это есть ПРОИЗВОЛЬНые ПОЛя с именем cast и extract - где cast и extract классы h6 & p для вывода данных -->
-                        <h6 class="cast card-text mb-3 text-secondary"><em><?php echo get_post_meta($post->ID, 'cast', true); ?></em></h6>
+                        <!-- Актеры фильма -->
+                        <h6 class="cast card-text mb-3 text-secondary"><em><?php the_tags('', ' ', ''); ?></em></h6>
+                         <!-- Описание фильма -->
                         <p class="extract card-text"><?php echo get_post_meta($post->ID, 'extract', true); ?></p>
                         <!-- выводит веь контент страницы, в нашем случае в контенте только кнопка BTN --Read more... -->
                         <?php the_content(); ?>
