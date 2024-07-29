@@ -10,32 +10,51 @@
 <?php if(have_posts()){ ?>
     <!-- если записи/фильмы существуют запускаем цикл while -->
     <?php while(have_posts()){ ?>
-        <article> 
-            <!-- подобная конструкция для показывания записей/фильмов -->
-            <?php the_post(); ?>
-            <div class="col">
-                <div class="card border border-0 shadow-sm">
-                    <!-- вывод картинки -->
-                    <?php the_post_thumbnail ();?>
-                     <!-- вывод жанров, это есть в админке рубрики -->
-                    <div class="card-header border border-0"><?php wp_list_categories(['style'=> 'none', 'separator'=> '']); ?></div>
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">
-                            <!-- Назавание фильма -->
-                            <span><?php the_title(); ?></span>
-                               <!--Год фильма -->
-                            <small class="text-body-tertiary">(<?php echo get_post_meta($post->ID, 'year', true); ?>)</small>
-                        </h5>
-                        <!-- Актеры фильма -->
-                        <h6 class="cast card-text mb-3 text-secondary"><em><?php the_tags('', ' ', ''); ?></em></h6>
-                         <!-- Описание фильма -->
-                        <p class="extract card-text"><?php echo get_post_meta($post->ID, 'extract', true); ?></p>
-                        <!-- выводит веь контент страницы, в нашем случае в контенте только кнопка BTN --Read more... -->
-                        <?php the_content(); ?>
-                    </div>
+        <!-- подобная конструкция для показывания записей/фильмов -->
+        
+        <!-- Везде где есть слово "the" в названии функции WP, это означает, что функция получает данные для той отдельной записи/фильма, в цикле или в другом месте, например на отдельной странице. Так запрограмирован WP))) -->
+        <?php the_post(); ?>
+        
+        <?php
+            // Формируем строку жанров для отдельного фильма в цикле
+            // get_the_category() - "..._the_..." указывает нам на то, что функция получает категории/жанры только отдельной записи/фильма в цикле.
+            $categories = get_the_category();
+            foreach($categories as $category){ $categoriesString .= $category->name . ", "; }
+            $categoriesStringCutLastComma = substr($categoriesString, 0, strlen($categoriesString) - 2);
+            $genres = cutString($categoriesStringCutLastComma, 30);
+
+            // Формируем строку актеров для отдельного фильма
+            // get_the_tags() - "..._the_..." указывает нам на то, что функция получает метки/актеров только отдельной записи/фильма в цикле.
+            $tags = get_the_tags();
+            foreach($tags as $tag){ $tagsString .= $tag->name . " "; }
+            $actors = cutString($tagsString, 30);
+        ?>
+        
+        <div class="col">
+            <div class="card border border-0 shadow-sm">
+                <!-- вывод картинки -->
+                <img src="<?php the_post_thumbnail_url() ?>" alt="Movie thumbnail" class="card-img-top">    
+                <!-- вывод жанров, это есть в админке рубрики -->
+                <div class="card-header border border-0"><?php echo $genres; ?></div>
+                <div class="card-body">
+                    <h5 class="card-title mb-3">
+                        <!-- Назавание фильма -->
+                        <!-- "the..." - указывает нам на получение названия отдельной записи/фильма в цикле -->
+                        <?php the_title(); ?>
+                        <!--Год фильма -->
+                        <small class="text-body-tertiary">
+                            (<?php echo get_post_meta($post->ID, 'movie_year', true); ?>)
+                        </small>
+                    </h5>
+                    <!-- Актеры фильма -->
+                    <h6 class="card-text mb-3 text-secondary"><em><?php echo $actors; ?></em> </h6>
+                    <!-- Описание фильма -->
+                    <!-- get_the_excerpt() - это функция получения отрывка записи. Можно найти в админ панеле под картинкой записи/фильма. Это тектстовое поле, содержащее краткое описание записи. -->
+                    <p class="card-text"><?php echo cutString(get_the_excerpt()); ?></p>
+                    <a href="<?php the_permalink();?>" class="btn btn-primary">Read more...</a>
                 </div>
             </div>
-        </article>
+        </div>
     <?php } ?>
     <!-- while пройдется по всем фильмам и прекратит работу -->
 <?php } else {?> 
