@@ -30,4 +30,11 @@
         remove_menu_page('edit-comments.php');
     });
 
-
+    // Фукнция обрезания строк по фиксированной длине
+    function cutString($str, $len=90, $after='...'){
+        if(strlen($str) > $len){
+            return substr($str, 0, $len) . $after;
+        } else {
+            return $str;
+        }
+    }
