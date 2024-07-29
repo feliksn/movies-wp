@@ -19,6 +19,7 @@
             // Формируем строку жанров для отдельного фильма в цикле
             // get_the_category() - "..._the_..." указывает нам на то, что функция получает категории/жанры только отдельной записи/фильма в цикле.
             $categories = get_the_category();
+            $categoriesString = '';
             foreach($categories as $category){ $categoriesString .= $category->name . ", "; }
             $categoriesStringCutLastComma = substr($categoriesString, 0, strlen($categoriesString) - 2);
             $genres = cutString($categoriesStringCutLastComma, 30);
@@ -26,7 +27,8 @@
             // Формируем строку актеров для отдельного фильма
             // get_the_tags() - "..._the_..." указывает нам на то, что функция получает метки/актеров только отдельной записи/фильма в цикле.
             $tags = get_the_tags();
-            foreach($tags as $tag){ $tagsString .= $tag->name . " "; }
+            $tagsString = '';
+            foreach($tags as $tag){ $tagsString .= $tag->name . ", "; }
             $actors = cutString($tagsString, 30);
         ?>
         
