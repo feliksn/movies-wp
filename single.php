@@ -29,7 +29,7 @@ get_header(); // подключаем header.php ?>
 				<!-- вывод актеров отдельного фильма -->
 				<p class="fw-light"><em><?php the_tags('Cast: ', ' ', ''); ?></em></p>
 				<!-- вывод описания/контента отдельного фильма -->
-				<p><?php the_content() ?></p>
+				<p><?php echo get_the_excerpt() ?></p>
 			</div>
 		</div>
 	</div>
