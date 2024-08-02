@@ -60,9 +60,7 @@
                         <!-- "the..." - указывает нам на получение названия отдельной записи/фильма в цикле -->
                         <?php echo $title; ?>
                         <!--Год фильма -->
-                        <small class="text-body-tertiary">
-                            (<?php echo $year; ?>)
-                        </small>
+                        <small class="text-body-tertiary">(<?php echo $year; ?>)</small>
                     </h5>
                     <!-- Актеры фильма -->
                     <h6 class="card-text mb-3 text-secondary"><em><?php echo $actors; ?></em> </h6>
