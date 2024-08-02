@@ -36,35 +36,16 @@
             }
 
             // Формируем отрывок описания для отдельного фильма
-            $fragment = get_the_excerpt();
-            if($fragment == ""){
-                $extract = 'No extract!';
-            }else{
-                $extract = cutString($fragment);
-            }
-
+            $extract = has_excerpt() ? cutString(get_the_excerpt()) : 'No extract!';
+            
             // Формируем название, заголовок для отдельного фильма
-            $heading = get_the_title(); 
-            if($heading == ""){
-                $title = 'No title!';
-            }else{
-                $title = $heading;
-            }
+            $title = get_the_title() ?: "No title!";
+            
             // Формируем год, для отдельного фильма
-            $arbitraryField = get_post_meta($post->ID, 'movie_year', true);
-            if($arbitraryField == ""){
-                $year = 'No year!';
-            }else{
-                $year = $arbitraryField;
-            }
+            $year = get_post_meta($post->ID, 'movie_year', true) ?: 'No year!';
+            
             // Формируем картинку, для отдельного фильма
-            $thumbnailUrl = get_the_post_thumbnail_url();
-            if($thumbnailUrl == ""){
-                $thumbnail = 'http://movies-wp/wp-content/uploads/2024/07/movie-default-1.png';
-            }else{
-                $thumbnail = $thumbnailUrl;
-            }
-           
+            $thumbnailUrl = get_the_post_thumbnail_url() ?: getDefaultThumbnailUrl();
         ?>
         
         <div class="col">
