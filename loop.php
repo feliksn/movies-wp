@@ -51,7 +51,7 @@
         <div class="col">
             <div class="card border border-0 shadow-sm">
                 <!-- вывод картинки -->
-                <img src="<?php echo $thumbnail; ?>" alt="Movie thumbnail" class="card-img-top">    
+                <img src="<?php echo $thumbnailUrl; ?>" alt="Movie thumbnail" class="card-img-top">    
                 <!-- вывод жанров, это есть в админке рубрики -->
                 <div class="card-header border border-0"><?php echo $genres; ?></div>
                 <div class="card-body">
