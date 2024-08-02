@@ -38,3 +38,8 @@
             return $str;
         }
     }
+
+    // Функция возвращает адрес картинки по умолчанию для фильма
+    function getDefaultThumbnailUrl() {
+        return wp_upload_dir()['baseurl'] . '/2024/07/movie-default-1.png';
+    }
