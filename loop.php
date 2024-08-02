@@ -25,15 +25,14 @@
             $genres = cutString($categoriesStringCutLastComma, 30);
 
             // Формируем строку актеров для отдельного фильма
-            // get_the_tags() - "..._the_..." указывает нам на то, что функция получает метки/актеров только отдельной записи/фильма в цикле.
-            $tags = get_the_tags();
-            if($tags == false){
-                $actors = 'No actors!';
-            }else{
+            if(has_tag()){
+                $tags = get_the_tags();
                 $tagsString = '';
                 foreach($tags as $tag){ $tagsString .= $tag->name . ", "; }
                 $tagsStringCutLastComma = substr($tagsString, 0, strlen($tagsString) - 2);
                 $actors = cutString($tagsStringCutLastComma, 30);
+            } else {
+                $actors = 'No actors!';
             }
 
             // Формируем отрывок описания для отдельного фильма
