@@ -11,13 +11,8 @@
     <!-- если записи/фильмы существуют запускаем цикл while -->
     <?php while(have_posts()){ ?>
         <!-- подобная конструкция для показывания записей/фильмов -->
-        
-        <!-- Везде где есть слово "the" в названии функции WP, это означает, что функция получает данные для той отдельной записи/фильма, в цикле или в другом месте, например на отдельной странице. Так запрограмирован WP))) -->
-        <?php the_post(); ?>
-        
         <?php
             // Формируем строку жанров для отдельного фильма в цикле
-            // get_the_category() - "..._the_..." указывает нам на то, что функция получает категории/жанры только отдельной записи/фильма в цикле.
             $categories = get_the_category();
             $categoriesString = '';
             foreach($categories as $category){ $categoriesString .= $category->name . ", "; }
@@ -47,7 +42,7 @@
             // Формируем картинку, для отдельного фильма
             $thumbnailUrl = get_the_post_thumbnail_url() ?: getDefaultThumbnailUrl();
         ?>
-        
+
         <div class="col">
             <div class="card border border-0 shadow-sm">
                 <!-- вывод картинки -->
@@ -63,9 +58,8 @@
                         <small class="text-body-tertiary">(<?php echo $year; ?>)</small>
                     </h5>
                     <!-- Актеры фильма -->
-                    <h6 class="card-text mb-3 text-secondary"><em><?php echo $actors; ?></em> </h6>
+                    <h6 class="card-text mb-3 text-secondary"><em><?php echo $actors; ?></em></h6>
                     <!-- Описание фильма -->
-                    <!-- get_the_excerpt() - это функция получения отрывка записи. Можно найти в админ панеле под картинкой записи/фильма. Это тектстовое поле, содержащее краткое описание записи. -->
                     <p class="card-text"><?php echo $extract; ?></p>
                     <a href="<?php the_permalink();?>" class="btn btn-primary">Read more...</a>
                 </div>
