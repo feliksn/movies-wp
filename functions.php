@@ -33,7 +33,7 @@
     // Функция показывания данных переменной на экране
     function raw($data, $name=''){
         echo "$name (type: " . gettype($data) . ") = ";
-        print("<pre>" . print_r($data, true) . "</pre>");
+        print("<pre style='margin-top:0;font-size:1rem'>" . print_r($data, true) . "</pre>");
     }
 
     // Фукнция обрезания строк по фиксированной длине

@@ -1,5 +1,0 @@
-/* Стили тега, который показывает данные, записанные в переменной (functions.php -> raw($data, $name)) */
-pre{
-    margin-top: 0 !important;
-    font-size: 1rem !important;
-}
