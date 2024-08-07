@@ -54,42 +54,19 @@ get_header(); // подключаем header.php ?>
 		<div class="row">
 			<div class="col-3 offset-1">
 				<!-- вывод картинки отдельного фильма -->
-				<img src="<?php echo $thumbnailUrl_single; ?>" alt="" class="d-block w-100">
+				<img src="<?php echo $thumbnailUrl; ?>" alt="" class="d-block w-100">
 			</div>
 			<div class="col-7">
 				<!-- Назавание фильма -->
-				<h1><?php echo $title_single; ?><br></h1>
-				<p class="fs-4 text-secondary"> 
-					<!--Вывод года фильма --> 
-					(<?php echo $year_single; ?>)
-				</p>
-				<p class="fw-semibold">
-					<!-- вывод жанров отдельного фильма -->
-					<!-- Функция wp_list_categories() - показывает все существующие категории, а не отдельного фильма
-					На странице отдельного фильма нужно использовать the_category() - эта фукнция получает категории/жарны только для отдельного взятого фильма -->
-					Genres: 
-					<?php if( has_category(array(1, 'No genres!'))) { ?>
-						<u>No genres!</u>
-					<?php }else{ 
-						 the_category(' '); } 
-					?>
-				</p>
+				<h1><?php echo $title; ?></h1>
+				<!--Вывод года фильма --> 
+				<p class="fs-4 text-secondary">(<?php echo $year; ?>)</p>
+				<!-- вывод жанров отдельного фильма -->
+				<p class="fw-semibold"><?php echo $genres; ?></p>
 				<!-- вывод актеров отдельного фильма -->
-				<?php if(has_tag()){ ?>
-					<p class='fw-light'><em> <?php the_tags('Cast: ', ' ', ''); ?></em></p>
-				<?php }else{ ?>
-					<p class='fw-light'><em> Cast: <u><b> No casts! </b></u> </em></p>
-				<?php } ?>
-
+				<p class='fw-light'><em><?php echo $actors; ?></em></p>
 				<!-- вывод описания/контента отдельного фильма -->
-				<p>
-					<?php if(has_excerpt()){ 
-								echo get_the_excerpt();
-						  }else{
-					?>
-						  <u><b> No extract! </u></b>
-					<?php }?>
-				</p>
+				<p><?php echo $content; ?></p>
 			</div>
 		</div>
 	</div>
