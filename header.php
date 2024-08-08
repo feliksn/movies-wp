@@ -17,3 +17,5 @@
 	<?php wp_head(); // необходимо для работы плагинов и функционала ?>
 </head>
 <body <?php body_class('bg-light'); // все классы для body ?>>
+
+<a href="http://movies-wp/genres/">Жанры</a>
