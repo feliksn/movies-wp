@@ -10,7 +10,7 @@ get_header(); // подключаем header.php ?>
 	$thumbnailUrl	= get_the_post_thumbnail_url() ?: getDefaultThumbnailUrl();
 	$title			= get_the_title() ?: "No title!";
 	$year			= get_post_meta($post->ID, 'movie_year', true) ?: "No year!";
-	$content 		= get_the_content() ?: "No content!";
+	$content 		= get_the_content() ?: "No extract!";
 ?>
 
 <section>
