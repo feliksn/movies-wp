@@ -49,3 +49,30 @@
     function getDefaultThumbnailUrl() {
         return wp_upload_dir()['baseurl'] . '/2024/07/movie-default-1.png';
     }
+
+    // Регистрируем меню
+    add_action( 'after_setup_theme', 'theme_register_nav_menu' );
+    function theme_register_nav_menu() {
+        register_nav_menu( 'header', 'Header Menu' );
+    }
+
+
+    // добавим класс nav-item ко всем пунктам меню li
+    add_filter('nav_menu_css_class', 'custom_nav_menu_css_class');
+    // получаем список сех классов меню
+    function custom_nav_menu_css_class ($classes)
+    {
+        // добавляем к спику классов свой класс
+        $classes[] = 'nav-item';
+        //вернем список классов уже с нашим классом
+        return $classes;
+    }
+
+    //повесим на все ссылки класс nav-link
+    add_filter('nav_menu_link_attributes', 'custom_nav_menu_link_attributes');
+
+    function custom_nav_menu_link_attributes ($atts)
+    {
+        $atts['class'] = 'nav-link';
+        return $atts;
+    }
