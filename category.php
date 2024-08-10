@@ -10,7 +10,7 @@ get_header(); // подключаем header.php ?>
 <div class="container">
 	<h3><?php single_cat_title(); ?></h3>
 	<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-3 g-3">
-		<?php echo get_template_part('loop'); ?>
+		<?php get_template_part('loop'); ?>
 	</div>
 </div>
 
