@@ -18,5 +18,31 @@
 </head>
 <body <?php body_class('bg-light'); // все классы для body ?>>
 
-<a href="http://movies-wp/genres/">Жанры</a>
-<a href="http://movies-wp/actors/">Актеры</a>
+<!-- навигационная панель -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom ">
+    <div class="container">
+		<a class="navbar-brand" href="/">
+			<img src="./images/logo.svg" alt="Bootstrap" width="41.25" height="33">
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<?php 
+			wp_nav_menu( array(								  
+				'container'       => false,           // (string) Контейнер меню. Обворачиватель ul. Указывается тег контейнера (по умолчанию в тег div)
+				'menu_class'      => 'navbar-nav me-auto mb-2 mb-lg-0',          // (string) class самого меню (ul тега)
+				'echo'            => true,            // (boolean) Выводить на экран или возвращать для обработки
+			) );
+			?>
+
+				<!-- поиск добавлен исключительно для сохранения внешней похожести с прошлым проектом -->
+			<form class="d-flex" role="search" action = "search.php" method = "GET">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="id">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+
+        </div>
+    </div>
+</nav>
