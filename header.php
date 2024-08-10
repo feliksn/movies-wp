@@ -19,3 +19,4 @@
 <body <?php body_class('bg-light'); // все классы для body ?>>
 
 <a href="http://movies-wp/genres/">Жанры</a>
+<a href="http://movies-wp/actors/">Актеры</a>
