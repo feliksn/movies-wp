@@ -6,6 +6,6 @@ $(document).ready(function() { // Start work jQuery--------------------->>>>>>>>
     $('#navpag ul li a').attr('class', 'page-link');
     $('#navpag ul li span.dots').attr('class', 'page-link');
     $('#navpag ul li span.current').wrap('<a class="page-link active"></a>');
-  
+    $('#navpag ul li span.page-link').parent().attr('class', 'page-item disabled');
 
 }); // END work jQuery------------------------------------>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
