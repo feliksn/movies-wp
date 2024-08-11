@@ -76,3 +76,13 @@
         $atts['class'] = 'nav-link';
         return $atts;
     }
+
+    add_filter( 'navigation_markup_template', 'my_navigation_template', 10, 2);
+    function my_navigation_template()
+    {
+        return '
+        <nav aria-label="Page navigation example" id="navpag">
+            %3$s
+        </nav>    
+        ';
+    }
