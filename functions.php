@@ -23,6 +23,13 @@
     function movies_wp_post_thumbnails()
     {
         add_theme_support('post-thumbnails');
+        add_theme_support( 'custom-logo', [
+            'height'      => 33,
+            'width'       => 41,
+            'flex-width'  => false,
+            'flex-height' => false,
+            'header-text' => '',
+        ] );
     }
 
     // Удаляем страницу комментариев из админ панели (пока что нам не нужна)
