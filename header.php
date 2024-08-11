@@ -37,12 +37,8 @@
 			) );
 			?>
 
-				<!-- поиск добавлен исключительно для сохранения внешней похожести с прошлым проектом -->
-			<form class="d-flex" role="search" action = "search.php" method = "GET">
-				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="id">
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>
-
+			<?php get_template_part('searchform') ?>
+			
         </div>
     </div>
 </nav>
