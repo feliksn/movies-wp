@@ -27,18 +27,13 @@
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-			<?php 
+		<?php 
 			wp_nav_menu( array(								  
-				'container'       => false,           // (string) Контейнер меню. Обворачиватель ul. Указывается тег контейнера (по умолчанию в тег div)
-				'menu_class'      => 'navbar-nav me-auto mb-2 mb-lg-0',          // (string) class самого меню (ul тега)
-				'echo'            => true,            // (boolean) Выводить на экран или возвращать для обработки
-			) );
-			?>
-
-			<?php get_template_part('searchform') ?>
-			
-        </div>
+				'container_class'=> "collapse navbar-collapse",          
+				'container_id'	=> "navbarSupportedContent",          
+				'menu_class'	=> 'navbar-nav me-auto mb-2 mb-lg-0',          
+			));
+		?>
+		<?php get_template_part('searchform') ?>
     </div>
 </nav>
