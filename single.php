@@ -36,4 +36,47 @@ get_header(); // подключаем header.php ?>
 	</div>
 </section>
 
+<?php
+   
+   $film_data = get_the_category();
+  
+   $rss_mass = [];
+
+
+   for($i = 0; $i<count($film_data); $i++){
+		array_push($rss_mass, fetch_feed('http://movies-wp/genres/'. $film_data[$i]->slug . '/'));
+   }
+
+
+   $rss_items = [];
+
+	foreach($rss_mass as $rss_genre) {
+		array_push($rss_items, $rss_genre->get_items( 0, $rss_genre->get_item_quantity(4) ));
+	}
+
+?>
+    <?php foreach($rss_items as $rss_key=>$rss_item) { ?>
+
+		<h5> Other <a href="<?php echo 'http://movies-wp/genres/'. $film_data[$rss_key]->slug .'/' ?>"> <?php echo $film_data[$rss_key]->name ?> </a> movies</h5>
+		
+			<div id="movies-container" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-3 g-3">
+				<?php  foreach ($rss_item as $item ) { ?>
+					<div class="col">
+						<div class="card border border-0 shadow-sm">
+							<div class="card-body">
+								<h5 class="card-title mb-3">
+									<?php echo $item->get_title() ?>
+								</h5>
+								<p class="card-text"><?php echo cutString($item->get_content()); ?></p>
+								<a href="<?php echo $item->get_permalink(); ?>" class="btn btn-primary">Read more...</a>
+							</div>
+						</div>
+					</div>
+				<?php  } ?>
+			</div>
+
+	<?php  } ?>
+		
+
+
 <?php get_footer(); // подключаем footer.php ?>
