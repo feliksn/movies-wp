@@ -36,47 +36,31 @@ get_header(); // подключаем header.php ?>
 	</div>
 </section>
 
-<?php
-   
-   $film_data = get_the_category();
-  
-   $rss_mass = [];
-
-
-   for($i = 0; $i<count($film_data); $i++){
-		array_push($rss_mass, fetch_feed('http://movies-wp/genres/'. $film_data[$i]->slug . '/'));
-   }
-
-
-   $rss_items = [];
-
-	foreach($rss_mass as $rss_genre) {
-		array_push($rss_items, $rss_genre->get_items( 0, $rss_genre->get_item_quantity(4) ));
-	}
-
-?>
-    <?php foreach($rss_items as $rss_key=>$rss_item) { ?>
-
-		<h5> Other <a href="<?php echo 'http://movies-wp/genres/'. $film_data[$rss_key]->slug .'/' ?>"> <?php echo $film_data[$rss_key]->name ?> </a> movies</h5>
-		
-			<div id="movies-container" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-3 g-3">
-				<?php  foreach ($rss_item as $item ) { ?>
-					<div class="col">
-						<div class="card border border-0 shadow-sm">
-							<div class="card-body">
-								<h5 class="card-title mb-3">
-									<?php echo $item->get_title() ?>
-								</h5>
-								<p class="card-text"><?php echo cutString($item->get_content()); ?></p>
-								<a href="<?php echo $item->get_permalink(); ?>" class="btn btn-primary">Read more...</a>
+		<!-- Показываем другие фильмы в подобных жанрах для главного фильма -->
+		<?php $categories = wp_get_post_categories(get_the_ID(), ['fields' => 'id=>name']); ?>  
+		<?php foreach($categories as $cat_id => $cat_name){ ?>
+			<?php $cat_link = get_category_link($cat_id); ?>
+			<?php $query = new WP_Query('cat=' . $cat_id . '&posts_per_page=4'); ?>
+			<?php if($query->have_posts()) { ?>
+				<h5>Other <a href="<?php echo $cat_link; ?>"><?php echo $cat_name; ?></a> movies</h5>
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-3 g-3">
+					<?php while($query->have_posts() ) { ?>
+						<?php $query->the_post(); ?>
+						<div class="col">
+							<div class="card border border-0 shadow-sm">
+								<div class="card-body">
+									<h5 class="card-title mb-3"><?php the_title(); ?></h5>
+									<p class="card-text"><?php echo cutString(get_the_excerpt()); ?></p>
+									<a href="<?php the_permalink(); ?>" class="btn btn-primary">Read more...</a>
+								</div>
 							</div>
 						</div>
-					</div>
-				<?php  } ?>
-			</div>
-
-	<?php  } ?>
-		
-
+					<?php } ?>
+				</div>
+			<?php } ?>
+			<?php wp_reset_postdata() ?>
+		<?php } ?>
+	</div>
+</section>
 
 <?php get_footer(); // подключаем footer.php ?>
