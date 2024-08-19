@@ -15,7 +15,7 @@ get_header(); // подключаем header.php ?>
 
 <section>
 	<div class="container py-4">
-		<div class="row">
+		<div class="row mb-3">
 			<div class="col-3 offset-1">
 				<!-- вывод картинки отдельного фильма -->
 				<img src="<?php echo $thumbnailUrl; ?>" alt="" class="d-block w-100">
@@ -33,8 +33,6 @@ get_header(); // подключаем header.php ?>
 				<p><?php echo $content; ?></p>
 			</div>
 		</div>
-	</div>
-</section>
 
 		<!-- Показываем другие фильмы в подобных жанрах для главного фильма -->
 		<?php $categories = wp_get_post_categories(get_the_ID(), ['fields' => 'id=>name']); ?>  
